@@ -14,4 +14,4 @@ stream_client = Twitter::Streaming::Client.new do |config|
   config.access_token_secret = "n2oP51udT64aq0hLo7CXOFaLrLsf5r0P20vsTuzkud4oH"
 end
 
-client.update("test")
+client.update("初めてのbotのTweetです(実はtestツイートを1つ削除しました。。。)")
