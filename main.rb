@@ -14,4 +14,41 @@ stream_client = Twitter::Streaming::Client.new do |config|
   config.access_token_secret = "n2oP51udT64aq0hLo7CXOFaLrLsf5r0P20vsTuzkud4oH"
 end
 
-client.update("初めてのbotのTweetです(実はtestツイートを1つ削除しました。。。)")
+## 投稿idの定義
+
+### ツイート数取得
+my_user = client.user
+tc = my_user.tweets_count
+
+### 投稿id化
+
+tc += 1
+
+## 国名をハッシュで取得
+
+countries = ISO3166::Country.new('JP')
+
+## ランダムに重複ありで3つ取得
+
+
+## 各文字の区切り位置を決める
+
+
+## 呟く
+
+if tc % 2 == 0 then
+
+### Questionを呟く
+client.update("これはQuestionです:" + country.translation(:ja) + tc.to_s + "回目です")
+
+else
+
+### Answerを呟く
+client.update("これはAnswerです:" + tc.to_s + "回目です")
+
+end
+
+
+## refarences
+# 国名取得
+# https://loumo.jp/wp/archive/20170710100041/
