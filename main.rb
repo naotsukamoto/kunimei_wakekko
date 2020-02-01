@@ -26,7 +26,7 @@ tc += 1
 
 ## 国名をハッシュで取得
 
-countries = ISO3166::Country.new('JP')
+country = ISO3166::Country.new('JP')
 
 ## ランダムに重複ありで3つ取得
 
