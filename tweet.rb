@@ -25,12 +25,6 @@ class Tweet
     end
   end
 
-  # ランダムに重複ありで3つ取得
-
-
-  # 各文字の区切り位置を決める
-
-
   # Tweetの投稿処理呼び出し
   def send_tweet
     creat_content
@@ -46,8 +40,7 @@ class Tweet
     # 投稿内容を設定
     my_user = @client.user
     @tc = my_user.tweets_count
-    # 投稿id化
-    @tc += 1
+    @tc +=1
     # 国名をランダムで取得
     @c_name1 = @c_name[rand(@c_name.length)]
     # 国名を任意のところで区切る
@@ -72,7 +65,7 @@ class Tweet
     # c_name_split_first = c_name_split[0]
     # c_name_split_last = c_name_split[1]
     # 格納
-    @text = "これは#{@tc.to_s}回目のQuestionです\n#{@c_name_split_first}\n回答は5分後です"
+    @text = "##{@tc.to_s} Ques.\n#{@c_name_split_first}\n#{@text_tag}"
     # if tc % 2 == 0 then
     #     @text = "これはQuestionです:#{c_name_split_first}:#{tc.to_s}回目です"
     # else
@@ -82,7 +75,7 @@ class Tweet
 
   def create_text2
     # 格納
-    @text2 = "これは#{@tc.to_s}回目のAnswerです\n答えは・・・#{@c_name1}です"
+    @text2 = "##{@tc.to_s} Ans.\n#{@c_name_split_first}\nFULL:#{@c_name1}\n#{@text_tag}"
   end
 
 
@@ -92,14 +85,14 @@ class Tweet
   # Tweet投稿処理
   def update
     begin 
-      @client.update(@text + @text_tag)
+      @client.update(@text)
     rescue => e
       p e # エラー時はログを出力
     end
   end
   def update2
     begin 
-      @client.update(@text2 + @text_tag)
+      @client.update(@text2)
     rescue => e
       p e # エラー時はログを出力
     end
