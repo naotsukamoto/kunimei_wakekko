@@ -63,8 +63,8 @@ PLATFORMS
 DEPENDENCIES
   countries
   dotenv
-  sinatra (= 1.4.7)
-  twitter (= 5.16.0)
+  sinatra
+  twitter
 
 RUBY VERSION
    ruby 2.7.0
