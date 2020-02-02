@@ -36,15 +36,15 @@
 
 # ## 呟く
 
-# if tc % 2 == 0 then
+if tc % 2 == 0 then
 
-# ### Questionを呟く
-# client.update("これはQuestionです:" + country.translation(:ja) + tc.to_s + "回目です")
+### Questionを呟く
+client.update("これはQuestionです:" + country.translation(:ja) + tc.to_s + "回目です")
 
-# else
+else
 
-# ### Answerを呟く
-# client.update("これはAnswerです:" + tc.to_s + "回目です")
+### Answerを呟く
+client.update("これはAnswerです:" + tc.to_s + "回目です")
 
 # end
 

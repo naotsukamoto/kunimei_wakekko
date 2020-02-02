@@ -61,7 +61,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  countries
+  countries (= 3.0.0)
   dotenv
   sinatra
   twitter
