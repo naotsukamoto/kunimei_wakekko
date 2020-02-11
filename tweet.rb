@@ -99,8 +99,7 @@ class Tweet
     # # 格納
     # @tc +=1
     # @text2 = "#{@c_name_split_last}\nFull:#{@c_name} #{@c_one.emoji_flag}\n#{@text_tag}"
-    @text2 = "##{@tc.to_s} A.\n#{@c_select_name_split[0][1]}#{@c_select_name_split[1][1]}#{@c_select_name_split[2][1]}\n
-    FULL:#{@c_select_name[0]}/#{@c_select_name[1]}/#{@c_select_name[2]}\n#{@text_tag2}"
+    @text2 = "##{@tc.to_s} A.\n#{@c_select_name_split[0][1]}#{@c_select_name_split[1][1]}#{@c_select_name_split[2][1]}\nFULL:#{@c_select_name[0]}/#{@c_select_name[1]}/#{@c_select_name[2]}\n#{@text_tag2}"
   end
 
 
