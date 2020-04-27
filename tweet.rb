@@ -37,13 +37,6 @@ class Tweet
         @c_select_name[x] = @c_select[x].translations['ja']
       end
     end
-    
-    # @c_name = @c_one.translations['ja']
-    # # 文字数が短いときは国名を変更  
-    # while @c_name.length < 4
-    #   @c_one = @c[rand(@c.length)]
-    #   @c_name = @c_one.translations['ja']
-    # end
 
     # 投稿内容(タグ)
     @text_tag1 = "#国名わけっこゲーム #ジャルジャル #M1"
@@ -58,6 +51,7 @@ class Tweet
     # 10分後に答えをツイートする
     sleep(600)
     create_text2
+    get_newest_tw
     update2
   end
 
@@ -65,44 +59,31 @@ class Tweet
   def creat_content
     # 投稿内容を設定
     my_user = @client.user
-    @tc = my_user.tweets_count
-    @tc = @tc/2 + 1
+    @tc_original = my_user.tweets_count
+    @tc = @tc_original/2 + 1
     # 3つの国名を任意のところで区切る
     min = @c_select_name.map(&:length).min - 2
     @c_select_name_split = []
     @c_select_name.each do |s|
       @c_select_name_split << s.split(/\A(.{2,#{min}})/,2)[1..-1]
     end
-    # @c_select_name_split = @c_select_name.map{|n| n.split(/\A(.{2,#{min}})/,2)[1..-1]}
-    # # 国名を任意のところで区切る
-    # c_name_split = @c_name.split(/\A(.{2,#{rand(@c_name.length)}})/,2)[1..-1]
-    # # 前と後の文字を格納
-    # @c_name_split_first = c_name_split[0]
-    # @c_name_split_last = c_name_split[1]
   end
 
   # ツイート本文の生成
   def create_text
-    # # 国名をランダムで取得
-    # c_name = @c_name[rand(@c_name.length)]
-    # # 国名を任意のところで区切る
-    # c_name_split = c_name.split(/\A(.{1,#{rand(c_name.length)}})/,2)[1..-1]
-    # # 前と後の文字を格納
-    # c_name_split_first = c_name_split[0]
-    # c_name_split_last = c_name_split[1]
-    # # 格納
-    # @text = "#{@c_name_split_first}\n#{@text_tag}"
     @text = "##{@tc.to_s} Q.\n#{@c_select_name_split[0][0]}#{@c_select_name_split[1][0]}#{@c_select_name_split[2][0]}\n#{@text_tag1}"
   end
 
   def create_text2
-    # # 格納
-    # @tc +=1
-    # @text2 = "#{@c_name_split_last}\nFull:#{@c_name} #{@c_one.emoji_flag}\n#{@text_tag}"
     @text2 = "##{@tc.to_s} A.\n#{@c_select_name_split[0][1]}#{@c_select_name_split[1][1]}#{@c_select_name_split[2][1]}\nFULL:#{@c_select_name[0]}/#{@c_select_name[1]}/#{@c_select_name[2]}\n#{@text_tag2}"
   end
 
-
+  # 最新のtweetidを取得
+  def get_newest_tw
+    @client.home_timeline({count: 1}).each do |tw|
+      @newest_tweet_id = tw.id
+    end
+  end
 
   private
 
@@ -116,11 +97,12 @@ class Tweet
   end
   def update2
     begin 
-      @client.update(@text2)
+      @client.update(@text2, options = {:in_reply_to_status_id => @newest_tweet_id})
     rescue => e
       p e # エラー時はログを出力
     end
   end
+
 end
 
 
