@@ -39,8 +39,8 @@ class Tweet
     end
 
     # 投稿内容(タグ)
-    @text_tag1 = "#国名わけっこゲーム #ジャルジャル #M1"
-    @text_tag2 = "#国名わけっこゲーム #ジャルジャル #M1 ##{@c_select_name[0]} ##{@c_select_name[1]} ##{@c_select_name[2]}"
+    # @text_tag1 = "#国名わけっこゲーム #ジャルジャル #M1"
+    # @text_tag2 = "#国名わけっこゲーム #ジャルジャル #M1 ##{@c_select_name[0]} ##{@c_select_name[1]} ##{@c_select_name[2]}"
   end
 
   # Tweetの投稿処理呼び出し
@@ -80,7 +80,8 @@ class Tweet
 
   # 最新のtweetidを取得
   def get_newest_tw
-    @client.user_timeline("KWakekko",{count: 1}).each do |tw|
+    tw_user_name = "WakekkoBot"
+    @client.user_timeline(tw_user_name,{count: 1}).each do |tw|
       @newest_tweet_id = tw.id
     end
   end
