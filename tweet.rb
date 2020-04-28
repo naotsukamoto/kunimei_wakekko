@@ -80,7 +80,7 @@ class Tweet
 
   # 最新のtweetidを取得
   def get_newest_tw
-    @client.home_timeline({count: 1}).each do |tw|
+    @client.user_timeline("KWakekko",{count: 1}).each do |tw|
       @newest_tweet_id = tw.id
     end
   end
