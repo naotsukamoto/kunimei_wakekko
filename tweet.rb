@@ -71,11 +71,11 @@ class Tweet
 
   # ツイート本文の生成
   def create_text
-    @text = "##{@tc.to_s} Q.\n#{@c_select_name_split[0][0]}#{@c_select_name_split[1][0]}#{@c_select_name_split[2][0]}\n#{@text_tag1}"
+    @text = "##{@tc.to_s} Q.\n#{@c_select_name_split[0][0]} #{@c_select_name_split[1][0]} #{@c_select_name_split[2][0]}〜"
   end
 
   def create_text2
-    @text2 = "##{@tc.to_s} A.\n#{@c_select_name_split[0][1]}#{@c_select_name_split[1][1]}#{@c_select_name_split[2][1]}\nFULL:#{@c_select_name[0]}/#{@c_select_name[1]}/#{@c_select_name[2]}\n#{@text_tag2}"
+    @text2 = "##{@tc.to_s} A.\n#{@c_select_name_split[0][1]}#{@c_select_name_split[1][1]}#{@c_select_name_split[2][1]}〜\nFULL:#{@c_select_name[0]}/#{@c_select_name[1]}/#{@c_select_name[2]}"
   end
 
   # 最新のtweetidを取得
